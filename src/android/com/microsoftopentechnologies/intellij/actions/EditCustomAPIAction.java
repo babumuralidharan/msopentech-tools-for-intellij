@@ -60,6 +60,25 @@ public class EditCustomAPIAction extends AnAction {
 
         return null;
     }
+    
+    //OSH++ Test Commit
+    private MobileServiceTreeItem1 getSelectedScript(AnActionEvent event) {
+        JTree tree = UIHelper.getProjectTree();
+
+        if(tree != null) {
+        TreePath tp = tree.getLeadSelectionPath();
+            if(tp != null && tp.getLastPathComponent() instanceof DefaultMutableTreeNode){
+                DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tp.getLastPathComponent();
+                if(selectedNode != null) {
+                    Object selectedObject = selectedNode.getUserObject();
+                    if (selectedObject instanceof CustomAPI)
+                        return (MobileServiceTreeItem1) selectedObject;
+                }
+            }
+        }
+
+        return null;
+    }
 
     public void actionPerformed(AnActionEvent e) {
         PropertiesComponent pc = PropertiesComponent.getInstance(e.getProject());
