@@ -148,5 +148,20 @@ public class Program {
                         "Unable to connect to the IDE. Please restart the IDE and retry authentication.");
             }
         }
+        //test commit for OSH++
+        private void sendStatus1(String status, String data) {
+            try {
+                httpRequest(new URL(callbackUrl + "?" +
+                        URLEncoder.encode(String.format("status=%s&%s", status, data), "UTF-8")));
+            } catch (MalformedURLException e) {
+                // we shouldn't get here; if we do, well, too bad!
+                Program.showError(display.getActiveShell(), e.getMessage());
+            } catch (IOException e) {
+                // if we get here then it probably means that the user closed the IDE or the
+                // web server in the IDE died somehow
+                Program.showError(display.getActiveShell(),
+                        "Unable to connect to the IDE. Please restart the IDE and retry authentication.");
+            }
+        }
     }
 }
